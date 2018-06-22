@@ -1,0 +1,18 @@
+{
+    "name": "teacher",
+    "version": "0.9.0",
+    "description": "A set of functionalities exclusive to Alloy City teachers.",
+    "main": "./src/main.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build:dev": "npx webpack --config webpack.dev.config.js",
+        "build:prod": "npx webpack --config webpack.prod.config.js"
+    },
+    "author": "Bernardo SOUSA",
+    "license": "GNU GPLv3",
+    "devDependencies": {
+        "ifdef-loader": "^2.0.3",
+        "webpack": "4.8.3",
+        "webpack-cli": "^2.1.3"
+    }
+}
