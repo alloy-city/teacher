@@ -26,6 +26,17 @@ eclassSocket.on('user-online', user => {
         onlineUsers.push(user)
     }
 
+    // Teacher.Course.selectedCourse.students // array of Student objects
+    if (Teacher.Course.selectedCourse){
+        let toBeNotified = []
+        for (let s of Teacher.Course.selectedCourse.students){
+            if (s._id == user._id){
+                toBeNotified.push(s._id)
+            }
+        }
+        notifyUsersOfFacilitatorPresence(toBeNotified)
+    }
+
     addOnlineUserToDOM(user);
 })
 
