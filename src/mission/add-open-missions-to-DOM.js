@@ -7,7 +7,8 @@ function addOpenMissionsToDOM(notAssessedOpenMissions) {
                     <p class="text-success">User: <b>${notAssessedOpenMissions[i].userEmail}</b></p>
                 </div>
                 <div class="panel-body">
-                    <p>Answer: ${notAssessedOpenMissions[i].answer}</p>
+                    <p class="text-muted"><i>Réponse de l'apprenant :</i></p>
+                    <p>${notAssessedOpenMissions[i].answer}</p>
                 </div>
                 <div class="panel-footer">
                     <input id="multiplier-${notAssessedOpenMissions[i].answerId}" class="mission-multiplier" name="${notAssessedOpenMissions[i].answerId}" data-worth="${notAssessedOpenMissions[i].worth}" type="range" min="0" max="1" step="0.01" value="1">
