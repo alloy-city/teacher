@@ -23,10 +23,12 @@ function grantXpToUserForMission(answerId) {
             /// #if DEBUG
             console.log(res.msg);
             /// #endif
+            notify("Succès précedent. Valeur actualisée.", "info", false)
         } else if (res.status == "success") {
             /// #if DEBUG
             console.log(res.msg);
             /// #endif
+            notify(`Succès!`, "info", false)
         }
     })
 }

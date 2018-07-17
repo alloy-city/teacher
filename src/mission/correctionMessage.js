@@ -11,12 +11,12 @@ document.addEventListener("keydown", e => {
             
         } else {
             /// #if DEBUG
-            console.log(
-                selection.anchorNode.parentElement.parentElement.parentElement.id,
-                selection.anchorOffset,
-                selection.focusOffset,
-                messageText
-            )
+            // console.log(
+            //     selection.anchorNode.parentElement.parentElement.parentElement.id,
+            //     selection.anchorOffset,
+            //     selection.focusOffset,
+            //     messageText
+            // )
             /// #endif
 
             let message = {
@@ -24,6 +24,8 @@ document.addEventListener("keydown", e => {
                 coordinates: [selection.anchorOffset, selection.focusOffset],
                 message: messageText
             }
+
+            message.coordinates = message.coordinates.sort()
 
             saveMessage(message)
         }
@@ -33,7 +35,15 @@ document.addEventListener("keydown", e => {
 
 function saveMessage(message){
     post(message, "answer/message", response => {
+        /// #if DEBUG
         console.log(response)
+        /// #endif
+
+        if (response.messages.length == 1){
+            notify(`Une instruction rajoutée.`, "success", false)
+        } else {
+            notify(`${response.messages.length} instructions rajoutées.`, "success", false)
+        }
     })
 }
 
