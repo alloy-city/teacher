@@ -6,7 +6,7 @@ function pointer(){
 
         slide.addEventListener("pointerenter", e => {
             if (e.currentTarget.parentElement.classList.contains("sent")){
-                console.log(slide.name, "start")
+                // console.log(slide.name, "start")
 
                 let instruction = {
                     to: Teacher.Course.getStudentIds(),
@@ -24,7 +24,7 @@ function pointer(){
                 let x = (e.pageX - e.currentTarget.offsetLeft) / e.currentTarget.width
                 let y = (e.pageY - e.currentTarget.offsetTop) / e.currentTarget.height
     
-                console.log(slide.name, "moving", x, y)
+                // console.log(slide.name, "moving", x, y)
     
                 let instruction = {
                     to: Teacher.Course.getStudentIds(),
@@ -41,7 +41,7 @@ function pointer(){
 
         slide.addEventListener("pointerleave", e => {
             if (e.currentTarget.parentElement.classList.contains("sent")){
-                console.log(slide.name, "end")
+                // console.log(slide.name, "end")
 
                 let instruction = {
                     to: Teacher.Course.getStudentIds(),
