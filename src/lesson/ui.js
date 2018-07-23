@@ -1,5 +1,6 @@
 import { loadAudios, isPlaying, isPaused } from './audio'
 import { loadVids } from './video'
+import { pointer } from './pointer';
 
 function markUpFacilitatorParagraphs(string) {
     var arr = string.split('\n');
@@ -39,6 +40,8 @@ function formatClassToLecture(EClass) {
         // console.log("===>", Teacher.Lesson.lecture.vids)
         loadVids(Teacher.Lesson.lecture.vids)
     }
+
+    pointer()
 }
 
 function markUpResourceToLecture(oneResource) {
@@ -64,7 +67,7 @@ function markUpResourceToLecture(oneResource) {
     } else if (oneResource.type == "text") {
         markUp = markUp + '<span class="label label-info">' + oneResource.type + '</span>' + tags + '<p>' + oneResource.resource + '</p>';
     } else if (oneResource.type == "image") {
-        markUp = markUp + '<span class="label label-info">' + oneResource.type + '</span>' + tags + '<img class="img-responsive" src="images/slides/' + oneResource.resource + '" />';
+        markUp += `<span class="label label-info">${oneResource.type}</span>${tags}<img name="${oneResource._id}" class="slide img-responsive" src="images/slides/${oneResource.resource}" />`
     } else if (oneResource.type == "audio") {
         // console.log(oneResource.type)
 

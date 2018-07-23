@@ -8,7 +8,7 @@ let lecture = {
 }
 
 function selectEclassForLecture(id) {
-    eclassSocket.emit('instruction', { to: Teacher.Course.selectedCourse.students, from: Auth.userData.id, type: "clear board" }); // clear board
+    eclassSocket.emit('instruction', { to: Teacher.Course.selectedCourse.students, from: Auth.userData._id, type: "clear board" }); // clear board
 
     get(`eclass/full/${id}`, lesson => {
         /// #if DEBUG
