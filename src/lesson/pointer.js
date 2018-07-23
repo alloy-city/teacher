@@ -7,6 +7,15 @@ function pointer(){
         slide.addEventListener("pointerenter", e => {
             if (e.currentTarget.parentElement.classList.contains("sent")){
                 console.log(slide.name, "start")
+
+                let instruction = {
+                    to: Teacher.Course.getStudentIds(),
+                    from: Auth.userData._id,
+                    type: "pointer-enter",
+                    slide: slide.name,
+                }
+    
+                eclassSocket.emit('instruction', instruction)
             }
         })
 
@@ -18,9 +27,9 @@ function pointer(){
                 console.log(slide.name, "moving", x, y)
     
                 let instruction = {
-                    to: Teacher.Course.selectedCourse.students,
+                    to: Teacher.Course.getStudentIds(),
                     from: Auth.userData._id,
-                    type: "pointer coordinates",
+                    type: "pointer-coordinates",
                     slide: slide.name,
                     coordinates: [x, y]
                 }
@@ -33,6 +42,15 @@ function pointer(){
         slide.addEventListener("pointerleave", e => {
             if (e.currentTarget.parentElement.classList.contains("sent")){
                 console.log(slide.name, "end")
+
+                let instruction = {
+                    to: Teacher.Course.getStudentIds(),
+                    from: Auth.userData._id,
+                    type: "pointer-exit",
+                    slide: slide.name,
+                }
+    
+                eclassSocket.emit('instruction', instruction)
             }
         })
     }
