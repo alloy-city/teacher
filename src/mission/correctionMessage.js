@@ -25,7 +25,11 @@ document.addEventListener("keydown", e => {
                 message: messageText
             }
 
-            message.coordinates = message.coordinates.sort()
+            if (message.coordinates[0] > message.coordinates[1]) {
+                let temp = message.coordinates[0]
+                message.coordinates[0] = message.coordinates[1]
+                message.coordinates[1] = temp
+            }
 
             saveMessage(message)
         }
