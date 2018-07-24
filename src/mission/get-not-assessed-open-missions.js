@@ -10,6 +10,7 @@ function _callback(res) {
     /// #endif
 
     for (var i = 0; i < res.length; i++) {
+
         numberOfNotAssessedOpenMissions++;
 
         if (res[i] && res[i].creator && res[i].creator._id) {
@@ -20,7 +21,8 @@ function _callback(res) {
                 missionId: res[i].question._id,
                 mission: res[i].question.resource.question,
                 answer: res[i].answer,
-                worth: res[i].question.worth
+                worth: res[i].question.worth,
+                timestamp: res[i].timestamp
             }
 
             notAssessedOpenMissions.push(notAssessedOpenMission);

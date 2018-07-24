@@ -4,7 +4,8 @@ function addOpenMissionsToDOM(notAssessedOpenMissions) {
             <div id="${notAssessedOpenMissions[i].answerId}" class="panel panel-default">
                 <div class="panel-heading">
                     ${notAssessedOpenMissions[i].mission}
-                    <p class="text-success">User: <b>${notAssessedOpenMissions[i].userEmail}</b></p>
+                    <p class="text-success">Apprenant : <b>${notAssessedOpenMissions[i].userEmail}</b></p>
+                    ${ notAssessedOpenMissions[i].timestamp ? `<p class="text-info">Fait : <b>${moment(notAssessedOpenMissions[i].timestamp).format("dddd, D/MM/YY, HH:mm")}</b></p>` : ``}
                 </div>
                 <div class="panel-body">
                     <p class="text-muted"><i>Réponse de l'apprenant :</i></p>
