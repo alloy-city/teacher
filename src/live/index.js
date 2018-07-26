@@ -63,12 +63,13 @@ function clearBoard(){
 }
 
 function interpretEvent(instruction) {
-    // console.log(instruction)
 
     if (instruction.type == "resource" || instruction.type == "retract-resource"){
         // add "received" mark to ui acknowledgement bubbles.
         let icon = document.querySelector(`#ack-bubble-student-${instruction.receivedBy}-resource-${instruction.resource_id} .spinner`)
-        console.log(icon)
+        /// #if DEBUG
+        // console.log(icon)
+        /// #endif
     
         icon.innerHTML = ""
         icon.appendChild(htmlToElement(`<span class="glyphicon glyphicon-ok" style="color:#5f9ea0" aria-hidden="true"></span>`))
