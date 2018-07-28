@@ -7,19 +7,45 @@ function showStudentDetails(user){
     if (Auth.userData.accessLevel > 1){
         coordinatorOptions = `
             <div class="col-md-6">
-                <form class="form-inline" onSubmit="return false;">
+                <form class="" onSubmit="return false;">
                     <div class="form-group">
-                        <label for="students-give-xp">XPs </label>
-                        <input type="number" class="form-control" id="students-give-xp" placeholder="">
+                        <div class="row space-below">
+                            <div class="col-sm-2 text-right">
+                                <label for="students-give-xp">XPs</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="number" class="form-control" id="students-give-xp" placeholder="">
+                            </div>
+                            <div class="col-sm-7">
+                                <button id="students-give-xp-submit" type="button" class="btn btn-default">Donnez XPs</button>
+                            </div>
+                        </div>
+
+                        <div class="row space-below">
+                            <div class="col-sm-2 text-right">
+                                <label for="publishTestimonyText" class="control-label">Témoignage</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <textarea rows="4" cols="50" class="form-control" id="publishTestimonyText" placeholder=""></textarea>
+                            </div>
+                            <div class="col-sm-2">
+                                <button id="publishTestimonyButton" type="button" class="btn btn-default">Publier</button>
+                            </div>
+                        </div>
+
+                        <div class="row space-below">
+                            <div class="col-sm-2 text-right">
+                                <label for="students-search-product">Produit</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="students-search-product" placeholder="">
+                            </div>
+                            <div class="col-sm-2">
+                                <button id="students-search-product-submit" type="button" class="btn btn-default">Chercher</button>
+                            </div>
+                        </div>
+                        
                     </div>
-                    <button id="students-give-xp-submit" type="button" class="btn btn-default">Donnez XPs</button>
-                </form>
-                <form class="form-inline" onSubmit="return false;">
-                    <div class="form-group">
-                        <label for="students-search-product">Produit </label>
-                        <input type="text" class="form-control" id="students-search-product" placeholder="">
-                    </div>
-                    <button id="students-search-product-submit" type="button" class="btn btn-default">Chercher</button>
                 </form>
                 <ul id="students-search-product-results-lessons" class="students-search-product-results list-group"></ul>
                 <ul id="students-search-product-results-chapters" class="students-search-product-results list-group"></ul>
@@ -50,6 +76,9 @@ function showStudentDetails(user){
 
         let giveXPButton = document.getElementById("students-give-xp-submit")
         giveXPButton.addEventListener("click", Coordinator.giveXP)
+
+        let publishTestimonyButton = document.getElementById("publishTestimonyButton")
+        publishTestimonyButton.addEventListener("click", Coordinator.publishTestimony)
     }
 }
 
