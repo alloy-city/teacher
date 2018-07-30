@@ -30,6 +30,7 @@ function http(method, body, route, callback) {
         if (response.status == 204) {
             callback(0)
         }
+        
         if (response.status == 200) {
             response.json().then(callback)
         } else {

@@ -1,7 +1,9 @@
 import { search } from '../product'
 
 function showStudentDetails(user){
-    console.log("showStudentDetails called.", user)
+    /// #if DEBUG
+    // console.log("showStudentDetails called.", user)
+    /// #endif
 
     let coordinatorOptions = ""
     if (Auth.userData.accessLevel > 1){
@@ -23,18 +25,6 @@ function showStudentDetails(user){
 
                         <div class="row space-below">
                             <div class="col-sm-2 text-right">
-                                <label for="publishTestimonyText" class="control-label">Témoignage</label>
-                            </div>
-                            <div class="col-sm-8">
-                                <textarea rows="4" cols="50" class="form-control" id="publishTestimonyText" placeholder=""></textarea>
-                            </div>
-                            <div class="col-sm-2">
-                                <button id="publishTestimonyButton" type="button" class="btn btn-default">Publier</button>
-                            </div>
-                        </div>
-
-                        <div class="row space-below">
-                            <div class="col-sm-2 text-right">
                                 <label for="students-search-product">Produit</label>
                             </div>
                             <div class="col-sm-8">
@@ -51,6 +41,7 @@ function showStudentDetails(user){
                 <ul id="students-search-product-results-chapters" class="students-search-product-results list-group"></ul>
                 <ul id="students-search-product-results-packs" class="students-search-product-results list-group"></ul>
                 <ul id="students-search-product-results-courses" class="students-search-product-results list-group"></ul>
+                <button id="publishTestimonyButton" type="button" class="btn btn-default">Publier Témoignage</button>
             </div>`
     }
 
@@ -78,7 +69,9 @@ function showStudentDetails(user){
         giveXPButton.addEventListener("click", Coordinator.giveXP)
 
         let publishTestimonyButton = document.getElementById("publishTestimonyButton")
-        publishTestimonyButton.addEventListener("click", Coordinator.publishTestimony)
+        publishTestimonyButton.addEventListener("click", e => {
+            Coordinator.publishTestimony(user)
+        })
     }
 }
 
