@@ -7,10 +7,16 @@ import { addCoursesButtons } from "../ui"
 import { addCourse } from "./index"
 
 get(`course/for-teacher`, res => {
-    addCoursesButtons(res)
-    
-    for (let course of res){
-        addCourse(course)
+    /// #if DEBUG
+    console.log(res)
+    /// #endif
+
+    if (res != 0){
+        addCoursesButtons(res)
+        
+        for (let course of res){
+            addCourse(course)
+        }
     }
 })
 
