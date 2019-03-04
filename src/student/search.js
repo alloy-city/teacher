@@ -1,7 +1,9 @@
 import { showUsersResult } from './show-results'
 
 function searchUsers(search) {
-    console.log(search)
+    /// if DEBUG
+    // console.log(search)
+    /// endif
 
     let headers = new Headers({
         "Content-Type": "application/json",
@@ -19,7 +21,10 @@ function searchUsers(search) {
     fetch(`${apiDomain}/api/user/search/`, init).then((response) => {
         if (response.status === 200) {
             response.json().then(response => {
-                console.log(response)
+                /// if DEBUG
+                // console.log(response)
+                /// endif
+
                 showUsersResult(response)
             })
         } else {
