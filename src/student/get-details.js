@@ -21,8 +21,8 @@ function getStudentDetails(id){
     fetch(`${apiDomain}/api/user/${id}`, init).then((response) => {
         if (response.status === 200) {
             response.json().then(response => {
-                console.log(response)
                 /// #if DEBUG
+                // console.log(response)
                 /// #endif
 
                 selected.setSelected(response)
