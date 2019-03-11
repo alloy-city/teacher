@@ -1,6 +1,6 @@
 // console.log('admin-missions_v2.js running...');
 
-var missionUsers;
+// var missionUsers;
 
 /* Now on course/xp/mission-accomplished.js
 function missionAccomplished(student, isCompleted){
@@ -24,18 +24,18 @@ function missionAccomplished(student, isCompleted){
 }
 */
 
-function sendMissions(){
-  console.log(hangoutId);
-  console.log(missionUsers);
+// function sendMissions(){
+//   console.log(hangoutId);
+//   console.log(missionUsers);
 
-  $.post('../admin/php/mission-access-controler.php', {
-    mission: hangoutId,
-    missionUsers: missionUsers,
-  }, function(data){
-    console.log(data);
-  });
-}
+//   $.post('../admin/php/mission-access-controler.php', {
+//     mission: hangoutId,
+//     missionUsers: missionUsers,
+//   }, function(data){
+//     console.log(data);
+//   });
+// }
 
-function setMissionUsers(users){
-  missionUsers = users;
-}
+// function setMissionUsers(users){
+//   missionUsers = users;
+// }

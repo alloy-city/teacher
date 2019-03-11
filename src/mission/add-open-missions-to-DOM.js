@@ -9,9 +9,22 @@ function addOpenMissionsToDOM(notAssessedOpenMissions) {
                 </div>
                 <div class="panel-body">
                     <p class="text-muted"><i>Réponse de l'apprenant :</i></p>
-                    <p>${notAssessedOpenMissions[i].answer}</p>
+                    <p id="${notAssessedOpenMissions[i].answerId}" class="mission-answer-text">${notAssessedOpenMissions[i].answer}</p>
                 </div>
                 <div class="panel-footer">
+
+                    <div>
+                        <textarea hidden id="write-comment-${notAssessedOpenMissions[i].answerId}" class="open-mission-write-comment" placeholder="Avez-vous utilisé LeBonPatron/le correcteur de votre navigateur ? / Développez ceci. / Je n'ai pas compris ce que vous voulez dire là. / etc."></textarea>
+                        <button
+                            id="comment-about-${notAssessedOpenMissions[i].answerId}"
+                            type="button"
+                            class="btn btn-success pull-right mission-comment-button hidden"
+                            disabled
+                            title="Écrivez sur le morceau sélectionné.">
+                            Enregistrer
+                        </button>
+                    </div>
+
                     <input id="multiplier-${notAssessedOpenMissions[i].answerId}" class="mission-multiplier" name="${notAssessedOpenMissions[i].answerId}" data-worth="${notAssessedOpenMissions[i].worth}" type="range" min="0" max="1" step="0.01" value="1">
                     <span id="open-mission-worth-${notAssessedOpenMissions[i].answerId}" class="open-mission-worth text-muted">${notAssessedOpenMissions[i].worth} XPs</span>
                     <button onclick="Teacher.Mission.dismissOpenMissionAnswer('${notAssessedOpenMissions[i].answerId}')" type="button" class="btn btn-danger">Accorder XPs et archiver</button>

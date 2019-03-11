@@ -1,7 +1,7 @@
 import { post } from "../http"
 
 document.addEventListener("keydown", e => {
-    if (e.shiftKey && e.code === "KeyM") {
+    if (e.altKey && e.code === "KeyM") {
         let selection = window.getSelection()
 
         
