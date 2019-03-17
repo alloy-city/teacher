@@ -9,7 +9,7 @@ function addOpenMissionsToDOM(notAssessedOpenMissions) {
                 </div>
                 <div class="panel-body">
                     <p class="text-muted"><i>Réponse de l'apprenant :</i></p>
-                    <p id="${notAssessedOpenMissions[i].answerId}" class="mission-answer-text">${notAssessedOpenMissions[i].answer}</p>
+                    <p id="mission-text-${notAssessedOpenMissions[i].answerId}" name="${notAssessedOpenMissions[i].answerId}" class="mission-answer-text">${notAssessedOpenMissions[i].answer}</p>
                 </div>
                 <div class="panel-footer">
 
@@ -22,6 +22,14 @@ function addOpenMissionsToDOM(notAssessedOpenMissions) {
                             disabled
                             title="Écrivez sur le morceau sélectionné.">
                             Enregistrer
+                        </button>
+                        <button
+                            id="clear-selection-on-${notAssessedOpenMissions[i].answerId}"
+                            name="${notAssessedOpenMissions[i].answerId}"
+                            type="button"
+                            class="btn btn-default pull-right mission-comment-button hidden"
+                            title="Écrivez sur le morceau sélectionné.">
+                            Annuler
                         </button>
                     </div>
 
