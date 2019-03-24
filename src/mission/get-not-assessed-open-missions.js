@@ -6,7 +6,7 @@ let numberOfNotAssessedOpenMissions = 0;
 
 function _callback(res) {
     /// #if DEBUG
-    // console.log(res)
+    console.log(res[0])
     /// #endif
 
     for (var i = 0; i < res.length; i++) {
@@ -18,10 +18,12 @@ function _callback(res) {
                 answerId: res[i]._id,
                 userId: res[i].creator._id,
                 userEmail: res[i].creator.mainEmail,
+                userPicture: res[i].creator.picture,
                 missionId: res[i].question._id,
                 mission: res[i].question.resource.question,
                 answer: res[i].answer,
                 worth: res[i].question.worth,
+                comments: res[i].messages,
                 timestamp: res[i].timestamp
             }
 

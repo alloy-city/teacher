@@ -1,15 +1,18 @@
+import { composeAnswer } from "./composeAnswer"
+
 function addOpenMissionsToDOM(notAssessedOpenMissions) {
     for (var i = 0; i < notAssessedOpenMissions.length; i++) {
         var markUp = `
             <div id="${notAssessedOpenMissions[i].answerId}" class="panel panel-default">
                 <div class="panel-heading">
+                    <img src="${notAssessedOpenMissions[i].userPicture || "images/noPicture.png"}" alt=" " class="mission-student-photo">
                     ${notAssessedOpenMissions[i].mission}
                     <p class="text-success">Apprenant : <b>${notAssessedOpenMissions[i].userEmail}</b></p>
                     ${ notAssessedOpenMissions[i].timestamp ? `<p class="text-info">Fait : <b>${moment(notAssessedOpenMissions[i].timestamp).format("dddd, D/MM/YY, HH:mm")}</b></p>` : ``}
                 </div>
                 <div class="panel-body">
                     <p class="text-muted"><i>Réponse de l'apprenant :</i></p>
-                    <p id="mission-text-${notAssessedOpenMissions[i].answerId}" name="${notAssessedOpenMissions[i].answerId}" class="mission-answer-text">${notAssessedOpenMissions[i].answer}</p>
+                    ${composeAnswer(notAssessedOpenMissions[i].answerId, notAssessedOpenMissions[i].answer, notAssessedOpenMissions[i].comments)}
                 </div>
                 <div class="panel-footer">
 

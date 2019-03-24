@@ -35,11 +35,13 @@ function http(method, body, route, callback) {
             response.json().then(callback)
         } else {
             /// #if DEBUG
-            console.log(response)
+            // console.log(response)
             /// #endif
         }
     }).catch(reason => {
-        console.log(reason)
+        /// #if DEBUG
+        // console.log(reason)
+        /// #endif
     })
 }
 
