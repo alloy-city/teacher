@@ -6,7 +6,7 @@ let numberOfNotAssessedOpenMissions = 0;
 
 function _callback(res) {
     /// #if DEBUG
-    console.log(res[0])
+    // console.log(res[0])
     /// #endif
 
     for (var i = 0; i < res.length; i++) {

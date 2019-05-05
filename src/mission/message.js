@@ -1,21 +1,29 @@
 import { post } from "../http"
+import { buildCommentCard } from "./buildCommentCards"
 
 // DOM element pointers
 let DOM = {
     selection: undefined,
     addCommentButton: undefined,
     clearSelectionButton: undefined,
+    deleteCommentButton: undefined,
     commentTextarea: undefined,
     studentProduction: undefined
 }
 
 let writing = false;
 let studentProduction;
+let commentIndex;
+
+function setWriting(v) {
+    writing = v;
+}
 
 let body = {
     answer_id: undefined,
     coordinates: undefined,
-    message: undefined
+    message: undefined,
+    messageIndex: undefined
 }
 
 document.addEventListener("mouseup", e => {
@@ -32,7 +40,7 @@ document.addEventListener("mouseup", e => {
             body.coordinates[0] = body.coordinates[0] - body.coordinates[1];
         }
 
-        activateComment(body.answer_id);
+        activateComment(body.answer_id, body.coordinates, saveComment);
     }
 });
 
@@ -59,29 +67,23 @@ function deactivateMessageButton() {
     for (let b of textAreas) b.hidden = true;
 }
 
-function activateComment (id) {
-    console.log(id, "-> activateComment");
-
+function activateComment (id, coordinates, callback) {
     DOM.addCommentButton = document.getElementById(`comment-about-${id}`)
     DOM.clearSelectionButton = document.getElementById(`clear-selection-on-${id}`)
+    DOM.deleteCommentButton = document.getElementById(`delete-comment-from-${id}`)
     DOM.commentTextarea = document.getElementById(`write-comment-${id}`);
     DOM.studentProduction = document.getElementById(`mission-text-${id}`);
     
     studentProduction = DOM.studentProduction.innerHTML;
 
-    console.log(studentProduction);
-
     deactivateMessageButton();
 
-    let markedString = studentProduction.slice(0, body.coordinates[0]) + '<mark id="new-comment" class="edit">' + studentProduction.slice(body.coordinates[0], body.coordinates[1]) + '</mark>' + studentProduction.slice(body.coordinates[1], studentProduction.length);
+    let markedString = studentProduction.slice(0, coordinates[0]) + '<mark id="new-comment" class="edit">' + studentProduction.slice(coordinates[0], coordinates[1]) + '</mark>' + studentProduction.slice(coordinates[1], studentProduction.length);
 
-    console.log(markedString);
-
-    // studentProductionElement.innerText = markedString;
     DOM.studentProduction.innerHTML = markedString;
 
-    DOM.addCommentButton.addEventListener("click", saveComment)
-    DOM.clearSelectionButton.addEventListener("click", clearSelection);
+    DOM.addCommentButton.onclick = callback;
+    DOM.clearSelectionButton.onclick = clearSelection;
     DOM.addCommentButton.classList.remove("hidden");
     DOM.clearSelectionButton.classList.remove("hidden");
     DOM.commentTextarea.hidden = false;
@@ -96,50 +98,39 @@ function activateComment (id) {
             DOM.addCommentButton.disabled = true;
         } else {
             DOM.addCommentButton.disabled = false;
-            if (e.key === "Enter") saveComment();
+            if (e.key === "Enter") callback();
         }
     }
 }
 
 function clearSelection() {
-    console.log("clearSelection");
-
     DOM.studentProduction.innerHTML = studentProduction;
     DOM.addCommentButton.classList.add("hidden");
     DOM.clearSelectionButton.classList.add("hidden");
+    DOM.deleteCommentButton.classList.add("hidden");
     DOM.commentTextarea.hidden = true;
     DOM.commentTextarea.value = "";
     writing = false;
 }
 
 function saveComment() {
-    console.log("Save comment");
-
     let message = DOM.commentTextarea.value;
     
     if (message != null && message.length > 0) {
         body.message = message;
 
         saveMessage()
-        console.log(body);
     }
 }
 
 function saveMessage(){
     post(body, "answer/message", response => {
         /// #if DEBUG
-        console.log(response)
+        // console.log(response)
         /// #endif
 
-        // TEMP
-        let x = 0;
-
-        let mark = document.getElementById("new-comment");
-        mark.classList.remove("edit");
-        mark.id = `${body.answer_id}-comment-${x}`;
-
-        studentProduction = DOM.studentProduction.innerHTML;
-
+        body.messageIndex = response.messages.length-1;
+        buildCommentCard(body.answer_id, studentProduction, body, response.messages.length-1);
         clearSelection();
 
         if (response.messages.length == 1){
@@ -149,3 +140,29 @@ function saveMessage(){
         }
     });
 }
+
+function editMessage() {
+    if (body.message === DOM.commentTextarea.value) {
+        return;
+    }
+
+    body.message = DOM.commentTextarea.value;
+    console.log("editMessage", body);
+    post(body, "answer/message/edit", response => {
+        if (response == "OK") {
+            buildCommentCard(body.answer_id, studentProduction, body, body.messageIndex);
+            clearSelection();
+        }
+    });
+}
+
+function removeComment (answer_id, messageIndex) {
+    post({answer_id, messageIndex}, "answer/message/delete", response => {
+        if (response == "OK") {
+            document.getElementById(`comment-cards-${answer_id}`).children[messageIndex].remove();
+            clearSelection();
+        }
+    });
+}
+
+export { writing, body, activateComment, setWriting, commentIndex, setCommentIndex, editMessage, clearSelection, removeComment };

@@ -1,4 +1,4 @@
-import { composeAnswer } from "./composeAnswer"
+import { buildCommentCards } from "./buildCommentCards"
 
 function addOpenMissionsToDOM(notAssessedOpenMissions) {
     for (var i = 0; i < notAssessedOpenMissions.length; i++) {
@@ -12,7 +12,9 @@ function addOpenMissionsToDOM(notAssessedOpenMissions) {
                 </div>
                 <div class="panel-body">
                     <p class="text-muted"><i>Réponse de l'apprenant :</i></p>
-                    ${composeAnswer(notAssessedOpenMissions[i].answerId, notAssessedOpenMissions[i].answer, notAssessedOpenMissions[i].comments)}
+                    <p id="mission-text-${notAssessedOpenMissions[i].answerId}" name="${notAssessedOpenMissions[i].answerId}" class="mission-answer-text">${notAssessedOpenMissions[i].answer}</p>
+                    <p class="text-muted"><i>Commentaires du prof :</i></p>
+                    <div id="comment-cards-${notAssessedOpenMissions[i].answerId}"></div>
                 </div>
                 <div class="panel-footer">
 
@@ -24,15 +26,23 @@ function addOpenMissionsToDOM(notAssessedOpenMissions) {
                             class="btn btn-success pull-right mission-comment-button hidden"
                             disabled
                             title="Écrivez sur le morceau sélectionné.">
-                            Enregistrer
+                            Enregistrer - ENTER
                         </button>
                         <button
                             id="clear-selection-on-${notAssessedOpenMissions[i].answerId}"
                             name="${notAssessedOpenMissions[i].answerId}"
                             type="button"
                             class="btn btn-default pull-right mission-comment-button hidden"
-                            title="Écrivez sur le morceau sélectionné.">
+                            title="Annuler l'édition - ESC">
                             Annuler
+                        </button>
+                        <button
+                            id="delete-comment-from-${notAssessedOpenMissions[i].answerId}"
+                            name="${notAssessedOpenMissions[i].answerId}"
+                            type="button"
+                            class="btn btn-danger pull-right mission-comment-button hidden"
+                            title="Effacer le commentaire">
+                            Effacer
                         </button>
                     </div>
 
@@ -43,6 +53,8 @@ function addOpenMissionsToDOM(notAssessedOpenMissions) {
             </div>`
 
         $('#open-mission-assessment').append(markUp);
+
+        buildCommentCards(notAssessedOpenMissions[i].answerId, notAssessedOpenMissions[i].answer, notAssessedOpenMissions[i].comments);
     }
 }
 
