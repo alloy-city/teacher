@@ -68,6 +68,7 @@ function deactivateMessageButton() {
 }
 
 function activateComment (id, coordinates, callback) {
+    document.execCommand("copy");
     DOM.addCommentButton = document.getElementById(`comment-about-${id}`)
     DOM.clearSelectionButton = document.getElementById(`clear-selection-on-${id}`)
     DOM.deleteCommentButton = document.getElementById(`delete-comment-from-${id}`)
