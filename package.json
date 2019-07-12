@@ -1,7 +1,11 @@
 {
   "name": "teacher",
-  "version": "0.9.2",
+  "version": "1.0.0",
   "description": "A set of functionalities exclusive to Alloy City teachers.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alloy-city/teacher.git"
+  },
   "main": "./src/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,10 +13,10 @@
     "build:prod": "npx webpack --config webpack.prod.config.js"
   },
   "author": "Bernardo SOUSA",
-  "license": "GNU GPLv3",
+  "license": "GPL-3.0-only",
   "devDependencies": {
     "ifdef-loader": "2.1.1",
-    "webpack": "4.29.6",
-    "webpack-cli": "3.2.3"
+    "webpack": "4.35.3",
+    "webpack-cli": "3.3.5"
   }
 }
