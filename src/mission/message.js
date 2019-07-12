@@ -15,6 +15,10 @@ let writing = false;
 let studentProduction;
 let commentIndex;
 
+function setCommentIndex(i) {
+    commentIndex = i;
+}
+
 function setWriting(v) {
     writing = v;
 }
