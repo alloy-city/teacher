@@ -46,6 +46,9 @@ function showStudentDetails(user){
     }
 
     $("#userDetails").html(`
+        <button class="btn btn-default pull-right clear" onclick="Teacher.Student.close()">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp;Fermer
+        </button>
         <div class="row">
             <div class="col-md-6">
                 <p><b>email:</b> ${user.mainEmail}</p>
@@ -58,6 +61,7 @@ function showStudentDetails(user){
             </div>
             ${coordinatorOptions}
         </div>
+        <div id="student-meetings"></div>
         <hr>`
     )
 

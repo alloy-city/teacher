@@ -26,6 +26,10 @@ getRecentUsers()
 
 let selected = new User("", "")
 
+function close() {
+	document.getElementById("userDetails").innerHTML = "";
+}
+
 export {
 	searchUsers,
 	getStudentDetails,
@@ -33,5 +37,6 @@ export {
 	getDebtUsers,
 	showStudentDetails,
 	showUsersResult,
-	selected
+	selected,
+	close
 }

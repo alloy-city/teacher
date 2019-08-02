@@ -27,10 +27,15 @@ function http(method, body, route, callback) {
         if (response.status == 304) {
             callback(304)
         }
+
         if (response.status == 204) {
             callback(0)
         }
-        
+
+        if (response.status == 401) {
+            notify("Unauthorized", "warning", false);
+        }
+
         if (response.status == 200) {
             response.json().then(callback)
         } else {
