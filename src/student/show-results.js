@@ -16,7 +16,7 @@ function showUsersResult (users) {
 	for (var i = 0; i < users.length; i++) {
 		$('#searchResultTable>tbody').append(`
 					<tr onClick="Teacher.Student.getStudentDetails('${users[i]._id}')" role="button">
-						<td>${users[i].xp}</td>
+						<td class="teacher-student-xp-${users[i]._id}">${users[i].xp}</td>
 						<td>${users[i].mainEmail}</td>
 						<td>${users[i].phones[0] || ""}</td>
 						<td>${users[i].cpf || ""}</td>

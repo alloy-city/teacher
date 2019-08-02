@@ -26,14 +26,23 @@ function switchPresence(e, m) {
         course: m.course._id,
         index: m.index
     }, "meeting/presence", answer => {
-        console.log(answer);
+        let xpDisplays = document.getElementsByClassName(`teacher-student-xp-${Teacher.Student.selected._id}`);
+        let xp = Number(xpDisplays[0].innerText);
 
         if (answer && answer.present == false) {
             e.target.classList.remove("glyphicon-ok", "text-success");
             e.target.classList.add("glyphicon-remove", "text-danger");
+
+            xp -= 5;
         } else if (answer && answer.present == true) {
             e.target.classList.remove("glyphicon-remove", "text-danger");
             e.target.classList.add("glyphicon-ok", "text-success");
+
+            xp += 5;
+        }
+
+        for (let i=0; i<xpDisplays.length; i++) {
+            xpDisplays[i].innerText = xp;
         }
     });
 }

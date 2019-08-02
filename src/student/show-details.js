@@ -53,7 +53,7 @@ function showStudentDetails(user){
             <div class="col-md-6">
                 <p><b>email:</b> ${user.mainEmail}</p>
                 <p><b>id:</b> ${user._id}</p>
-                <p><b>xp:</b> ${user.xp}</p>
+                <p><b>xp:</b> <span class="teacher-student-xp-${user._id}">${user.xp}</span></p>
                 <p><b>name:</b> ${user.name || ""}</p>
                 <p><b>nickname:</b> ${user.nickname || ""}</p>
                 <p><b>phone:</b> ${user.phones[0] || ""}</p>
