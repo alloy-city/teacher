@@ -1,4 +1,4 @@
-import * as Get from "./get"
+import { getCourses } from "./get"
 import { launchClass } from "./launch-class"
 import { Course } from "./course"
 import { activateTab } from '../ui'
@@ -33,8 +33,14 @@ function getStudentIds(){
     return studentIds
 }
 
+function clearCourses() {
+    courses = [];
+}
+
 function selectCourse(course){
     selectedCourse = course
 }
 
-export { courses, selectedCourse, selectCourse, launchClass, addCourse, activateTab, XP, getStudentIds }
+getCourses();
+
+export { courses, selectedCourse, selectCourse, launchClass, addCourse, activateTab, XP, getStudentIds, getCourses, clearCourses }

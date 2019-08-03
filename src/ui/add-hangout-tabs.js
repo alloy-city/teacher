@@ -25,7 +25,7 @@ function _addHandles(nOfHangouts){
 
 function _addTabs(hangouts, students){
     /// #if DEBUG
-    // console.log(students)
+    console.log(students)
     /// #endif
 
     let tabs = ""

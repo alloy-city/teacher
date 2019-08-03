@@ -11,7 +11,7 @@ function addCoursesButtons(courses) {
 
     let buttons = ""
     for (let course of courses) {
-        buttons += `<button type="button" class="btn btn-default" onclick="Teacher.Course.launchClass('${course._id}')">${course.title}</button>`
+        buttons += `<button type="button" class="btn btn-default" onclick="Teacher.Course.launchClass('${course._id}', '${course.title}')">${course.title}</button>`
     }
 
     container.innerHTML = buttons
