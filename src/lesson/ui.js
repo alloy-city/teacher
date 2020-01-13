@@ -3,6 +3,8 @@ import { loadVids } from './video'
 import { pointer } from './pointer';
 
 function markUpFacilitatorParagraphs(string) {
+    if (!string) return "";
+
     var arr = string.split('\n');
     var markUp = '';
     for (var i = 0; i < arr.length; i++) {
