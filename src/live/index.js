@@ -76,11 +76,21 @@ function interpretEvent(instruction) {
     }
 }
 
+function leaveClassroom() {
+    let body = {
+        to: Teacher.Course.getStudentIds(),
+        from: Auth.userData._id
+    }
+
+    eclassSocket.emit('teacher-left', body);
+}
+
 export {
     eclassSocket,
     onlineUsers,
     loadEventListeners,
     notifyUsersOfFacilitatorPresence,
     interpretEvent,
-    clearBoard
+    clearBoard,
+    leaveClassroom
 }

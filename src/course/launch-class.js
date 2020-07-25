@@ -1,5 +1,6 @@
 import { addHangoutTabs } from '../ui/add-hangout-tabs';
 import { getCourses, clearCourses } from './index';
+import { leaveClassroom } from '../live';
 
 let hangoutsTabs = document.getElementById("hangoutsTabs");
 let xpControlLabels = document.getElementById("xpControlLabels");
@@ -19,6 +20,7 @@ closeButton.onclick = () => {
 
     clearCourses();
     getCourses();
+    leaveClassroom();
 }
 
 function launchClass(_id, title){
